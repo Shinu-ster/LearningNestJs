@@ -8,9 +8,12 @@ async function bootstrap() {
 bootstrap();
 
 /*
+ 1.
  nest generate controller episodes -> creating controller, 
  Controllers: handles HTTP requests and responses
 
  nest generate service episodes -> creating services
  Services: Contains the business logic or data logic
+
+  nest g s config -> shortcut g for generate s for service
 */
