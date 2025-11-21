@@ -2,6 +2,7 @@
 
 import { Note } from 'src/notes/note.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Role } from './roles.enum';
 
 @Entity('users')
 export class User {
@@ -14,6 +15,11 @@ export class User {
   @Column()
   password: string;
 
+  @Column({ type: 'varchar', length: 50, default: Role.STUDENT })
+  roles: Role[];
+
   @OneToMany(() => Note, (note) => note.owner)
   notes: Note[];
 }
+
+//41. Updating user entity

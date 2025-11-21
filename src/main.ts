@@ -8,7 +8,6 @@ async function bootstrap() {
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
-
 /*
  1.
  nest generate controller episodes -> creating controller, 
@@ -47,3 +46,8 @@ Controller
 INterceptors
 Exception Filters
 */
+
+// 39. Going one step further with roles and their permissions
+// admin -> can view create and delete anyones note
+// teacher -> can only create and update their note
+// student -> can only view notes

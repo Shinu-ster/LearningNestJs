@@ -41,7 +41,8 @@ export class AuthService {
   async login(dto: LoginDto) {
     const user = await this.validateUser(dto.email, dto.password);
     if (!user) throw new UnauthorizedException('Invalid credientials');
-    const payload = { sub: user.id, email: user.email };
+    //42. adding roles in payload as well
+    const payload = { sub: user.id, email: user.email, roles: user.roles };
     const token = this.jwtService.sign(payload);
     // returning token + user info
     const { password, ...rest } = user as any;

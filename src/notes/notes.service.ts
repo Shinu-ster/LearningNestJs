@@ -19,12 +19,22 @@ export class NotesService {
     const note = this.notesRepo.create({ ...dto, owner });
     return this.notesRepo.save(note);
   }
+  // 49. adding method to create notes for specific user id
+  async createForUser(ownerId: string, dto: CreateNoteDto) {
+    const owner = { id: ownerId } as any;
+    const note = this.notesRepo.create({ ...dto, owner });
+    return this.notesRepo.save(note);
+  }
 
   async findAllForUser(userId: string) {
     return this.notesRepo.findOne({
       where: { owner: { id: userId } },
       relations: ['owner'],
     });
+  }
+
+  async findById(id: string) {
+    return this.notesRepo.findOne({ where: { id }, relations: ['owner'] });
   }
 
   async findOneForUser(noteId: string, userId: string) {
@@ -35,6 +45,7 @@ export class NotesService {
     if (!note) throw new NotFoundException('Note not found');
     if (note.owner.id !== userId)
       throw new ForbiddenException('You dont own this note');
+    console.log('Returning single note: ', noteId);
     return note;
   }
 
