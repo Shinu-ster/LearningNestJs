@@ -26,8 +26,14 @@ export class NotesService {
     return this.notesRepo.save(note);
   }
 
+  async findAll() {
+    return this.notesRepo.find({
+      relations: ['owner'],
+    });
+  }
+
   async findAllForUser(userId: string) {
-    return this.notesRepo.findOne({
+    return this.notesRepo.find({
       where: { owner: { id: userId } },
       relations: ['owner'],
     });

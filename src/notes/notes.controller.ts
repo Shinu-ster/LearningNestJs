@@ -47,8 +47,22 @@ export class NotesController {
   }
 
   @Get()
-  async findAll(@CurrentUser('id') userId: string) { // Getting all notes of current user
-    return this.notesService.findAllForUser(userId);
+  async findAll(@CurrentUser() user) {
+    // Getting all notes of current user
+    // return this.notesService.findAllForUser(userId);
+
+    // ADMIN: returns all notes
+    if (user.roles.includes(Role.ADMIN)) {
+      return this.notesService.findAll();
+    }
+
+    // STUDENT: return all notes
+    if (user.roles.includes(Role.STUDENT)) {
+      return this.notesService.findAll();
+    }
+
+    // TEACHER: return only their own notes
+    return this.notesService.findAllForUser(user.id);
   }
 
   @Get(':id')

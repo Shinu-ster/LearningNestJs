@@ -18,11 +18,14 @@ export class RolesGuard implements CanActivate {
     }
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { user } = context.switchToHttp().getRequest();
+    
+    // Printing jwt
+    console.log('Decoded JWT Payload; ',user);
     if (!user || !user.roles) {
       // user.roles may be array of strings
       return false;
     }
-    return requiredRoles.some((role) => user.role.includes(role));
+    return requiredRoles.some((role) => user.roles.includes(role));
   }
 }
 
