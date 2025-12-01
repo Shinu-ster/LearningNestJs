@@ -43,6 +43,8 @@ lerna-debug.log*
 .env.local
 
 data-source.ts
+/src/config/database.config.ts
+
 
 # temp directory
 .temp

@@ -2,8 +2,11 @@
 
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { User } from 'src/auth/user.entity';
-import { Note } from 'src/notes/note.entity';
+import { User } from 'src/models/user.entity';
+import { Note } from 'src/models/note.entity';
+import { Role } from 'src/models/role.entity';
+import { Permission } from 'src/models/permisson.entity';
+import { RefreshToken } from 'src/models/refresh-token.entity';
 
 export const databaseConfig = (
   configService: ConfigService,
@@ -14,7 +17,7 @@ export const databaseConfig = (
   username: configService.get('DATABASE_USERNAME') || 'root',
   password: configService.get('DATABASE_PASSWORD') || 'shinu2301',
   database: configService.get('DATABASE_NAME') || 'nest_demo',
-  entities: [User, Note],
+  entities: [User, Note, Role, Permission, RefreshToken],
   synchronize: true,
   logging: true,
 });

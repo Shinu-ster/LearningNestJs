@@ -1,7 +1,7 @@
 //44. Creating a seeder to populate db with data
 
 import { AppDataSource } from '../../../src/data-source';
-import { Role } from '../../../src/roles/role.entity';
+import { Role } from '../../models/role.entity';
 
 async function seedRoles() {
   const roleRepo = AppDataSource.getRepository(Role);

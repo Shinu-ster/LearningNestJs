@@ -4,11 +4,11 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Note } from './note.entity';
+import { Note } from '../models/note.entity';
 import { Repository } from 'typeorm';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
-import { User } from 'src/auth/user.entity';
+import { User } from 'src/models/user.entity';
 
 // 37. creating note service
 @Injectable()
